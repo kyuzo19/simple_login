@@ -1,3 +1,4 @@
+//connect to database
 require("./api/data/db");
 var express = require("express");
 var path = require("path");

@@ -12,7 +12,7 @@ module.exports.register = function (req, res) {
 		}, function(err, user){
 			if (err) {
                 res
-                    .status(200)
+                    .status(500)
                     .json(err)
             } else {
                 res
@@ -79,8 +79,21 @@ module.exports.auth = function (req, res, next) {
 
 module.exports.employees = function (req, res) {
     
-    res
-        .status(200)
-        .json("list og employees")
+    Users
+    .find()
+    .exec(function (err, employees){
+        if (err){
+            res
+                .status(500)
+                .json(err)
+        } else {
+            
+            res
+                .status(200)
+                .json(employees)
+            
+            
+        }
+    })
     
 };
