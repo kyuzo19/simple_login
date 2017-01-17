@@ -1,5 +1,6 @@
 var mongoose =require("mongoose");
 var Users = mongoose.model("User");
+var Employees = mongoose.model("Employee");
 var bcrypt = require("bcrypt-nodejs");
 var jwt = require("jsonwebtoken");
 
@@ -78,22 +79,20 @@ module.exports.auth = function (req, res, next) {
 
 
 module.exports.employees = function (req, res) {
-    
-    Users
-    .find()
-    .exec(function (err, employees){
-        if (err){
-            res
-                .status(500)
-                .json(err)
-        } else {
-            
-            res
-                .status(200)
-                .json(employees)
+	Employees
+    	.find()
+    	.exec(function (err, employees){
+        	if (err){
+				res
+                	.status(500)
+                	.json(err)
+			} else {
+            	res
+                	.status(200)
+                	.json(employees)
             
             
-        }
-    })
+			}
+		})
     
 };

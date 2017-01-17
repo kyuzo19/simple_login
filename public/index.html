@@ -5,14 +5,24 @@
 	</head>
     <body>
     	<div class="wrapper" ng-controller="loginCtrl as vm">
-        	<form class="form-signin" ng-submit="vm.login()">       
+        	<form class="form-signin" ng-submit="vm.login()" ng-if="!vm.isLoggedIn()">       
       			<h2 class="form-signin-heading">Please login</h2>
       			<input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" ng-model="vm.username"/>
       			<input type="password" class="form-control" name="password" placeholder="Password" required="" ng-model="vm.password"/>      
-      			
       			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
     		</form>
-  		</div>
+  		</div> <!-- container login-->
+        <div ng-controller="logoutCtrl as vm">
+            <button type="button" class="btn btn-lg btn-primary" ng-click="vm.logout()" ng-if="vm.isLoggedIn()">Logout</button>
+        </div><!--container logout-->
+        
+        <div class="container" ng-controller="employeeCtrl as vm">
+            <ul class="list-group" ng-if="vm.isLoggedIn()" ng-if="vm.isLoggedIn()">
+                <li ng-repeat="test in vm.test" class="list-group-item">name : {{test.firstname}} </li>
+            </ul>
+        
+        </div><!-- container list-->
+        
         <script src="/node_modules/angular/angular.min.js"></script>
         <script src="/node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
         <script src="app.js"></script>

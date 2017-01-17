@@ -3,13 +3,10 @@ angular.module("loginApp", ["angular-jwt"])
     $httpProvider.interceptors.push("authInterceptor");
 })
 .factory("authStatus", function  () {
- 	var auth = {
-    	isLoggedIn: false
-  	};
-	
-	return {
-    	auth: auth
-  	};
+ 	 var auth = {
+        isLoggedIn: false
+    };
+	return auth;
 	
 	
 })
@@ -55,6 +52,13 @@ angular.module("loginApp", ["angular-jwt"])
 }])
 .controller("loginCtrl", ["$http", "jwtHelper", "$window", "authStatus", function ($http, jwtHelper, $window, authStatus){
     var vm = this;
+	vm.isLoggedIn = function() {
+   		if (authStatus.isLoggedIn) {
+            return true;
+        } else {
+            return false;
+        }
+	};
     
     vm.login = function (){
         
@@ -78,9 +82,32 @@ angular.module("loginApp", ["angular-jwt"])
         
     };
 }])
-.controller("employeeCtrl", ["$http", function ($http) {
-   var vm = this;
-    
+.controller("logoutCtrl", ["$window", "$location", "authStatus", function ($window, $location, authStatus) {
+	var vm = this;
+	vm.isLoggedIn = function () {
+			if (authStatus.isLoggedIn) {
+            	return true;
+			} else {
+            	return false;
+			}
+		};
+	vm.logout = function () {
+        
+        authStatus.isLoggedIn = false;
+        delete $window.sessionStorage.token;
+        $location.path("/");
+        
+    };
+}])
+.controller("employeeCtrl", ["$http", "authStatus", function ($http, authStatus) {
+   	var vm = this;
+	vm.isLoggedIn = function() {
+   		if (authStatus.isLoggedIn) {
+			return true;
+		} else {
+			return false;
+		};
+	};
    $http.get("/employees").then(function(response){
        vm.test = response.data;
    }).catch(function(err){
