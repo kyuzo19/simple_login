@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="loginApp">
     <head>
-		<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+		<link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 		<link href="custom.css" rel="stylesheet" type="text/css">			
 	</head>
     <body>
@@ -17,7 +17,6 @@
             <button type="button" class="btn btn-lg btn-primary" ng-click="vm.logout()" ng-if="vm.isLoggedIn()">Logout</button>
         </div><!--container logout-->
         
-        <div class="container" ng-controller="employeeCtrl as vm" class="ng-cloak" >
             <ul class="list-group" ng-if="vm.isLoggedIn()" ng-if="vm.isLoggedIn()">
                 <li ng-repeat="test in vm.test" class="list-group-item">name : {{test.firstname}} </li>
             </ul>
