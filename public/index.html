@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="loginApp">
     <head>
-		  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+		<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+		<link href="custom.css" rel="stylesheet" type="text/css">			
 	</head>
     <body>
-    	<div class="wrapper" ng-controller="loginCtrl as vm">
+    	<div class="wrapper" ng-controller="loginCtrl as vm" class="ng-cloak">
         	<form class="form-signin" ng-submit="vm.login()" ng-if="!vm.isLoggedIn()">       
       			<h2 class="form-signin-heading">Please login</h2>
       			<input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" ng-model="vm.username"/>
@@ -12,11 +13,11 @@
       			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
     		</form>
   		</div> <!-- container login-->
-        <div ng-controller="logoutCtrl as vm">
+        <div ng-controller="logoutCtrl as vm" class="ng-cloak">
             <button type="button" class="btn btn-lg btn-primary" ng-click="vm.logout()" ng-if="vm.isLoggedIn()">Logout</button>
         </div><!--container logout-->
         
-        <div class="container" ng-controller="employeeCtrl as vm">
+        <div class="container" ng-controller="employeeCtrl as vm" class="ng-cloak" >
             <ul class="list-group" ng-if="vm.isLoggedIn()" ng-if="vm.isLoggedIn()">
                 <li ng-repeat="test in vm.test" class="list-group-item">name : {{test.firstname}} </li>
             </ul>
