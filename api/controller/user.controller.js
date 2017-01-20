@@ -3,6 +3,7 @@ var Users = mongoose.model("User");
 var Employees = mongoose.model("Employee");
 var bcrypt = require("bcrypt-nodejs");
 var jwt = require("jsonwebtoken");
+var config = require("../../config");
 
 module.exports.register = function (req, res) {
 	
@@ -37,7 +38,7 @@ module.exports.login = function (req, res) {
              } else {
                  if(bcrypt.compareSync(req.body.password, user.password)) {
                      console.log("found user");
-                     var token = jwt.sign({username : user.username}, "secret", {expiresIn : 3600});
+                     var token = jwt.sign({username : user.username}, config.secret, {expiresIn : 3600});
                      
                      res
                         .status(200)
@@ -59,7 +60,7 @@ module.exports.auth = function (req, res, next) {
     
     if (req.headers.authorization) {
         var token = req.headers.authorization.split(" ")[1];
-        jwt.verify(token, "secret", function(err, decoded){
+        jwt.verify(token, config.secret, function(err, decoded){
             if (err){
                 res
                     .status(401)

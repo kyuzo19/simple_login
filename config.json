@@ -1,0 +1,5 @@
+{
+    "secret" : "s3cr3t",
+    "dbUrl" : "mongodb://database:database2016@ds055594.mlab.com:55594/cloudbpo"
+    
+}

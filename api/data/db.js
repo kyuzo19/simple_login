@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
+var config = require("../../config");
 
 
-mongoose.connect("mongodb://database:database2016@ds055594.mlab.com:55594/cloudbpo");
+mongoose.connect(config.dbUrl);
 
 mongoose.connection.once("open", function (){
 	console.log("connected to mongolab");
